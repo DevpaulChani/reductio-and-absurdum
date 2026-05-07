@@ -1,7 +1,4 @@
-﻿// using System.Runtime.InteropServices;
-
-string greeting = "Welcome to Reductio and Absurdum!";
-
+﻿
 List<Product> products = new List<Product>()
 {
     new Product() { 
@@ -53,7 +50,7 @@ List<ProductType> productTypes = new List<ProductType>()
         Name = "wands"
         }            
 };
-
+Console.WriteLine("Welcome to Reductio and Absurdum!");
 string choice = null;
 while (choice != "0")
 {
