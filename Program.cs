@@ -50,6 +50,7 @@ List<ProductType> productTypes = new List<ProductType>()
         Name = "wands"
         }            
 };
+
 Console.WriteLine("Welcome to Reductio and Absurdum!");
 string choice = null;
 while (choice != "0")
@@ -133,85 +134,97 @@ void ListProducts(List<Product> products, List<ProductType> productTypes )
 
 void ViewProductByCategory(List<Product> products, List<ProductType> productTypes)
 {
-    Console.WriteLine(@"Choose a Product Type:
-    1. Apparel
-    2. Potions
-    3. Enchanted Objects
-    4. Wands");
 
-    choice = Console.ReadLine();
+    string categoryChoice = "";
     
-    if (choice == "1")
-    {
-        Console.WriteLine("Apparel");
-        Console.WriteLine();
-        for (int i = 0; i < products.Count; i++)
+    while (categoryChoice != "0") {
+        Console.WriteLine(@"Choose a Product Type:
+        0. Return to Main Menu
+        1. Apparel
+        2. Potions
+        3. Enchanted Objects
+        4. Wands");
+
+        categoryChoice = Console.ReadLine();
+        
+        if (categoryChoice == "0")
         {
-            if (products[i].ProductTypeId == 1)
+            Console.WriteLine("Returning to main menu...");
+            break;
+        }
+
+        else if (categoryChoice == "1")
+        {
+            Console.WriteLine("Apparel");
+            Console.WriteLine();
+            for (int i = 0; i < products.Count; i++)
             {
-                Console.WriteLine(products[i].Name);
-                Console.WriteLine("$" + products[i].Price);
-                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
-                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
-                Console.WriteLine();
+                if (products[i].ProductTypeId == 1)
+                {
+                    Console.WriteLine(products[i].Name);
+                    Console.WriteLine("$" + products[i].Price);
+                    Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                    Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                    Console.WriteLine();
+                }
             }
         }
-    }
 
-    else if (choice == "2")
-    {
-        Console.WriteLine("Potions");
-        Console.WriteLine();
-        for (int i = 0; i < products.Count; i++)
+        else if (categoryChoice == "2")
         {
-            if (products[i].ProductTypeId == 2)
+            Console.WriteLine("Potions");
+            Console.WriteLine();
+            for (int i = 0; i < products.Count; i++)
             {
-                Console.WriteLine(products[i].Name);
-                Console.WriteLine("$" + products[i].Price);
-                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
-                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
-                Console.WriteLine();
+                if (products[i].ProductTypeId == 2)
+                {
+                    Console.WriteLine(products[i].Name);
+                    Console.WriteLine("$" + products[i].Price);
+                    Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                    Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                    Console.WriteLine();
+                }
             }
         }
-    }
 
-    else if (choice == "3")
-    {
-        Console.WriteLine("Enchanted Objects");
-        Console.WriteLine();
-        for (int i = 0; i < products.Count; i++)
+        else if (categoryChoice == "3")
         {
-            if (products[i].ProductTypeId == 3)
+            Console.WriteLine("Enchanted Objects");
+            Console.WriteLine();
+            for (int i = 0; i < products.Count; i++)
             {
-                Console.WriteLine(products[i].Name);
-                Console.WriteLine("$" + products[i].Price);
-                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
-                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
-                Console.WriteLine();
+                if (products[i].ProductTypeId == 3)
+                {
+                    Console.WriteLine(products[i].Name);
+                    Console.WriteLine("$" + products[i].Price);
+                    Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                    Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                    Console.WriteLine();
+                }
             }
         }
-    }
 
-    else if (choice == "4")
-    {
-        Console.WriteLine("Wands");
-        Console.WriteLine();
-        for (int i = 0; i < products.Count; i++)
+        else if (categoryChoice == "4")
         {
-            if (products[i].ProductTypeId == 4)
+            Console.WriteLine("Wands");
+            Console.WriteLine();
+            for (int i = 0; i < products.Count; i++)
             {
-                Console.WriteLine(products[i].Name);
-                Console.WriteLine("$" + products[i].Price);
-                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
-                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
-                Console.WriteLine();
+                if (products[i].ProductTypeId == 4)
+                {
+                    Console.WriteLine(products[i].Name);
+                    Console.WriteLine("$" + products[i].Price);
+                    Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                    Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                    Console.WriteLine();
+                }
             }
         }
-    }
 
-    else
-    {
-        Console.WriteLine("Unknown input. Please select a value of 1-4.");
+        else
+        {
+            Console.WriteLine("Unknown input. Please select a value of 1-4.");
+        }
     }
 };
 
@@ -222,14 +235,39 @@ void AddProduct()
     newProduct.Name = Console.ReadLine();
 
     Console.WriteLine("Enter Product Price:");
-    newProduct.Price = decimal.Parse(Console.ReadLine());
+    while (true){
+        try
+        {
+            newProduct.Price = decimal.Parse(Console.ReadLine());
+            break;   
+        }
+
+        catch (Exception)
+        {
+            Console.WriteLine("Unknown input. Please try again.");
+        }
+    }
+
 
     Console.WriteLine(@"Choose a Product Type:
     1. Apparel
     2. Potions
     3. Enchanted Objects
     4. Wands");
-    newProduct.ProductTypeId = int.Parse(Console.ReadLine());
+    
+    while (true) 
+        try
+        {
+            newProduct.ProductTypeId = int.Parse(Console.ReadLine());
+            break;  
+        }
+
+        catch (Exception)
+        {
+            Console.WriteLine("Unknown input. Please try again.");
+
+        }
+    
 
     newProduct.Available = true;
     newProduct.DateAdded = DateTime.Now;
@@ -246,8 +284,19 @@ void DeleteProduct()
     {
         Console.WriteLine((i + 1) + ". " + products[i].Name);
     }
-    
-    int selection = int.Parse(Console.ReadLine());
+    int selection;
+    while (true){
+        try
+        {
+            selection = int.Parse(Console.ReadLine());
+            break;   
+        }
+
+        catch (Exception)
+        {
+            Console.WriteLine("Unknown input. Please try again.");
+        }
+    }
 
     if (selection >= 1 && selection <= products.Count)
     { 
@@ -267,7 +316,19 @@ void UpdateProduct()
     {
         Console.WriteLine((i + 1) + ". " + products[i].Name);
     }
-    int selection = int.Parse(Console.ReadLine());
+    int selection;
+    while (true){
+        try
+        {
+            selection = int.Parse(Console.ReadLine());
+            break;   
+        }
+
+        catch (Exception)
+        {
+            Console.WriteLine("Unknown input. Please try again.");
+        }
+    }
 
     if (selection >= 1 && selection <= products.Count)
     {
@@ -276,17 +337,65 @@ void UpdateProduct()
         toUpdate.Name = Console.ReadLine();
 
         Console.WriteLine("Enter Product Price:");
-        toUpdate.Price = decimal.Parse(Console.ReadLine());
+        // toUpdate.Price = decimal.Parse(Console.ReadLine());
+        while (true)
+            try
+            {
+                toUpdate.Price = decimal.Parse(Console.ReadLine());
+                break;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Unknown input. Please try again.");
+            }
 
+        
         Console.WriteLine("Is the product available? (y/n)");
-        toUpdate.Available = Console.ReadLine().ToLower() == "y";
+        while (true){
+            string answer = Console.ReadLine().ToLower(); 
+            if (answer == "y")
+            {
+                toUpdate.Available = true;
+                break;
+            }
+            else if (answer == "n")
+            {
+                toUpdate.Available = false;
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Unknown input. Please enter y or n.");
+            }
+        }
 
         Console.WriteLine(@"Choose a Product Type:
         1. Apparel
         2. Potions
         3. Enchanted Objects
         4. Wands");
-        toUpdate.ProductTypeId = int.Parse(Console.ReadLine());
+        
+        int productTypeId;
+        while (true)
+        {
+            try 
+            {
+                productTypeId = int.Parse(Console.ReadLine());
+                if (productTypeId < 1 || productTypeId > 4)
+                {
+                Console.WriteLine("Number must be between 1 and 4. Try again.");
+                continue;
+                }
+                break;
+            }
+        
+            catch (Exception)
+            {
+                Console.WriteLine("Unknown input. Please try again.");
+            }
+            }
+
+        toUpdate.ProductTypeId = productTypeId;
         Console.WriteLine(toUpdate.Name + " was changed.");
     }
 
