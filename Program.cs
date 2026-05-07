@@ -7,28 +7,28 @@ List<Product> products = new List<Product>()
     new Product() { 
         Name = "Cloak of Displacement", 
         Price = 250.00m, 
-        available = true, 
+        Available = true, 
         DateAdded = DateTime.Now.AddDays(-10), 
         ProductTypeId = 1 
     },
     new Product() { 
         Name = "Potion of Healing",
         Price = 75.50m, 
-        available = true, 
+        Available = true, 
         DateAdded = DateTime.Now.AddDays(-3), 
         ProductTypeId = 2 
     },
     new Product() { 
         Name = "Immovable Rod", 
         Price = 500.00m, 
-        available = false, 
+        Available = false, 
         DateAdded = DateTime.Now.AddDays(-30), 
         ProductTypeId = 3 
     },
     new Product() { 
         Name = "Wand of Magic Missles", 
         Price = 999.99m, 
-        available = true, 
+        Available = true, 
         DateAdded = DateTime.Now.AddDays(-1), 
         ProductTypeId = 4 
     }
@@ -105,10 +105,10 @@ void ListProducts(List<Product> products, List<ProductType> productTypes )
     string a;
     for (int i = 0; i < products.Count; i++)
     {
-        Console.WriteLine(products[i].Name);
+        Console.WriteLine((i + 1) + ". " + products[i].Name);
         Console.WriteLine("$"+products[i].Price);
 
-        if (products[i].available)
+        if (products[i].Available)
         {
             a = "Yes";
         }
@@ -156,7 +156,7 @@ void AddProduct()
     Console.WriteLine("Enter Product Price:");
     newProduct.Price = decimal.Parse(Console.ReadLine());
 
-    newProduct.available = true;
+    newProduct.Available = true;
     newProduct.DateAdded = DateTime.Now;
 
     products.Add(newProduct);
@@ -169,12 +169,12 @@ public class Product
 {
     public string Name { get; set; }
     public decimal Price { get; set; }
-    public bool available { get; set; }
+    public bool Available { get; set; }
     public DateTime DateAdded { get; set; }
     public int ProductTypeId { get; set; }
     public int DaysOnShelf 
     {
-        get { return (DateTime.Now - DateAdded).Days; ; }
+        get { return (DateTime.Now - DateAdded).Days; }
     }
 
 }
