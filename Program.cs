@@ -85,10 +85,10 @@ while (choice != "0")
     {
         AddProduct();
     }
-    // else if (choice == "4")
-    // {
-    //     DeleteProduct();
-    // }
+    else if (choice == "4")
+    {
+        DeleteProduct();
+    }
     // else if (choice == "5")
     // {
     //     UpdateProduct();
@@ -130,17 +130,79 @@ void ListProducts(List<Product> products, List<ProductType> productTypes )
 
 void ViewProductByCategory(List<Product> products, List<ProductType> productTypes)
 {
-    Console.WriteLine(@"Choose an option:
+    Console.WriteLine(@"Choose a Product Type:
     1. Apparel
     2. Potions
     3. Enchanted Objects
     4. Wands");
 
     choice = Console.ReadLine();
+    int categoryId;
+    
     if (choice == "1")
     {
-
-    } 
+        Console.WriteLine("Apparel");
+        Console.WriteLine();
+        for (int i = 0; i < products.Count; i++)
+        {
+            if (products[i].ProductTypeId == 1)
+            {
+                Console.WriteLine(products[i].Name);
+                Console.WriteLine("$" + products[i].Price);
+                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                Console.WriteLine();
+            }
+        }
+    }
+    if (choice == "2")
+    {
+        Console.WriteLine("Potions");
+        Console.WriteLine();
+        for (int i = 0; i < products.Count; i++)
+        {
+            if (products[i].ProductTypeId == 2)
+            {
+                Console.WriteLine(products[i].Name);
+                Console.WriteLine("$" + products[i].Price);
+                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                Console.WriteLine();
+            }
+        }
+    }
+    if (choice == "3")
+    {
+        Console.WriteLine("Enchanted Objects");
+        Console.WriteLine();
+        for (int i = 0; i < products.Count; i++)
+        {
+            if (products[i].ProductTypeId == 3)
+            {
+                Console.WriteLine(products[i].Name);
+                Console.WriteLine("$" + products[i].Price);
+                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                Console.WriteLine();
+            }
+        }
+    }
+    if (choice == "4")
+    {
+        Console.WriteLine("Wands");
+        Console.WriteLine();
+        for (int i = 0; i < products.Count; i++)
+        {
+            if (products[i].ProductTypeId == 4)
+            {
+                Console.WriteLine(products[i].Name);
+                Console.WriteLine("$" + products[i].Price);
+                Console.WriteLine("Available? " + (products[i].Available ? "Yes" : "No"));
+                Console.WriteLine(products[i].DaysOnShelf + " days on shelf");
+                Console.WriteLine();
+            }
+        }
+    }
     else
     {
         Console.WriteLine("Unknown input. Please select a value of 1-4.");
@@ -156,13 +218,39 @@ void AddProduct()
     Console.WriteLine("Enter Product Price:");
     newProduct.Price = decimal.Parse(Console.ReadLine());
 
+    Console.WriteLine(@"Choose a Product Type:
+    1. Apparel
+    2. Potions
+    3. Enchanted Objects
+    4. Wands");
+    newProduct.ProductTypeId = int.Parse(Console.ReadLine());
+
     newProduct.Available = true;
     newProduct.DateAdded = DateTime.Now;
 
     products.Add(newProduct);
+    Console.WriteLine(newProduct.Name + "was added.");
     
 };
-void DeleteProduct(){};
+void DeleteProduct()
+{
+    Console.WriteLine("Select a product to delete:");
+    for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine((i + 1) + ". " + products[i].Name);
+    }
+    
+    int selection = int.Parse(Console.ReadLine());
+    if (selection >= 1 && selection <= products.Count)
+    { 
+        products.Remove(products[selection - 1]);
+    }
+    else
+    {
+        Console.WriteLine("Invalid selection");
+    }
+}
+;
 void UpdateProduct(){};
 
 public class Product
