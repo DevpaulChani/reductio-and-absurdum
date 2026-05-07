@@ -34,8 +34,6 @@ List<Product> products = new List<Product>()
     }
 };
 
-
-
 List<ProductType> productTypes = new List<ProductType>()
 {
     new ProductType() { 
@@ -55,7 +53,6 @@ List<ProductType> productTypes = new List<ProductType>()
         Name = "wands"
         }            
 };
-
 
 string choice = null;
 while (choice != "0")
@@ -245,6 +242,7 @@ void AddProduct()
     Console.WriteLine(newProduct.Name + "was added.");
     
 };
+
 void DeleteProduct()
 {
     Console.WriteLine("Select a product to delete:");
@@ -264,8 +262,8 @@ void DeleteProduct()
     {
         Console.WriteLine("Invalid selection");
     }
-}
-;
+};
+
 void UpdateProduct(){};
 
 public class Product
