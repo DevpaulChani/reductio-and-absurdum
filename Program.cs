@@ -143,7 +143,6 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
     4. Wands");
 
     choice = Console.ReadLine();
-    int categoryId;
     
     if (choice == "1")
     {
@@ -239,7 +238,7 @@ void AddProduct()
     newProduct.DateAdded = DateTime.Now;
 
     products.Add(newProduct);
-    Console.WriteLine(newProduct.Name + "was added.");
+    Console.WriteLine(newProduct.Name + " was added.");
     
 };
 
@@ -264,7 +263,41 @@ void DeleteProduct()
     }
 };
 
-void UpdateProduct(){};
+void UpdateProduct()
+{
+    Console.WriteLine("Choose a product to edit");
+        for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine((i + 1) + ". " + products[i].Name);
+    }
+    int selection = int.Parse(Console.ReadLine());
+
+    if (selection >= 1 && selection <= products.Count)
+    {
+        Product toUpdate = products[selection - 1];
+        Console.WriteLine("Enter Product Name:");
+        toUpdate.Name = Console.ReadLine();
+
+        Console.WriteLine("Enter Product Price:");
+        toUpdate.Price = decimal.Parse(Console.ReadLine());
+
+        Console.WriteLine("Is the product available? (y/n)");
+        toUpdate.Available = Console.ReadLine().ToLower() == "y";
+
+        Console.WriteLine(@"Choose a Product Type:
+        1. Apparel
+        2. Potions
+        3. Enchanted Objects
+        4. Wands");
+        toUpdate.ProductTypeId = int.Parse(Console.ReadLine());
+        Console.WriteLine(toUpdate.Name + " was changed.");
+    }
+
+    else
+    {
+        Console.WriteLine("Invalid selection");
+    }
+};
 
 public class Product
 {
