@@ -92,13 +92,13 @@ while (choice != "0")
         DeleteProduct();
     }
 
-    // else if (choice == "5")
-    // {
-    //     UpdateProduct();
-    // }
+    else if (choice == "5")
+    {
+        UpdateProduct();
+    }
     else
     {
-        Console.WriteLine("Unknown input. Please select a value of 1-5.");
+        Console.WriteLine("Unknown input. Please select a value of 0-5.");
     }
 }
 
