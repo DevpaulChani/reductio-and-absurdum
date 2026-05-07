@@ -266,7 +266,7 @@ void DeleteProduct()
 void UpdateProduct()
 {
     Console.WriteLine("Choose a product to edit");
-        for (int i = 0; i < products.Count; i++)
+    for (int i = 0; i < products.Count; i++)
     {
         Console.WriteLine((i + 1) + ". " + products[i].Name);
     }
