@@ -69,26 +69,32 @@ while (choice != "0")
     5. Update a Product's details.");
 
     choice = Console.ReadLine();
+
     if (choice == "0")
     {
         Console.WriteLine("Goodbye!");
     }
+
     else if (choice == "1")
     {
         ListProducts(products, productTypes);
     }
+
     else if (choice == "2")
     {
         ViewProductByCategory(products, productTypes);
     }
+
     else if (choice == "3")
     {
         AddProduct();
     }
+    
     else if (choice == "4")
     {
         DeleteProduct();
     }
+
     // else if (choice == "5")
     // {
     //     UpdateProduct();
@@ -112,13 +118,16 @@ void ListProducts(List<Product> products, List<ProductType> productTypes )
         {
             a = "Yes";
         }
+
         else
         {
             a = "No";
         }
+
         Console.WriteLine("Available? " + a);
         Console.WriteLine(products[i].DaysOnShelf+" days on shelf");
         ProductType type = productTypes.Find(types => types.Id == products[i].ProductTypeId);
+
         if (type != null)
         {
             Console.WriteLine("Type: " + type.Name);
@@ -155,7 +164,8 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
             }
         }
     }
-    if (choice == "2")
+
+    else if (choice == "2")
     {
         Console.WriteLine("Potions");
         Console.WriteLine();
@@ -171,7 +181,8 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
             }
         }
     }
-    if (choice == "3")
+
+    else if (choice == "3")
     {
         Console.WriteLine("Enchanted Objects");
         Console.WriteLine();
@@ -187,7 +198,8 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
             }
         }
     }
-    if (choice == "4")
+
+    else if (choice == "4")
     {
         Console.WriteLine("Wands");
         Console.WriteLine();
@@ -203,6 +215,7 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
             }
         }
     }
+
     else
     {
         Console.WriteLine("Unknown input. Please select a value of 1-4.");
@@ -241,10 +254,12 @@ void DeleteProduct()
     }
     
     int selection = int.Parse(Console.ReadLine());
+
     if (selection >= 1 && selection <= products.Count)
     { 
         products.Remove(products[selection - 1]);
     }
+
     else
     {
         Console.WriteLine("Invalid selection");
