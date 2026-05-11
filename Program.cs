@@ -139,7 +139,6 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
     
     while (categoryChoice != "0") {
         Console.WriteLine(@"Choose a Product Type:
-        0. Return to Main Menu
         1. Apparel
         2. Potions
         3. Enchanted Objects
@@ -147,13 +146,7 @@ void ViewProductByCategory(List<Product> products, List<ProductType> productType
 
         categoryChoice = Console.ReadLine();
         
-        if (categoryChoice == "0")
-        {
-            Console.WriteLine("Returning to main menu...");
-            break;
-        }
-
-        else if (categoryChoice == "1")
+        if (categoryChoice == "1")
         {
             Console.WriteLine("Apparel");
             Console.WriteLine();
